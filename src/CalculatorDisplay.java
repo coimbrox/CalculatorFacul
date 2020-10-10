@@ -160,25 +160,41 @@ public class CalculatorDisplay {
 		JButton button_divide = new JButton("/");
 		button_divide.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				valor1 = Double.parseDouble(txtDisplay.getText());  //pega o valor 
+				txtDisplay.setText("");  //limpar o display
+				sinal = "dividir";				
 			}
 		});
 		button_divide.setBounds(243, 215, 44, 30);
 		frame.getContentPane().add(button_divide);
 		
 		JButton button_multiply = new JButton("*");
+		button_multiply.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				valor1 = Double.parseDouble(txtDisplay.getText());  //pega o valor 
+				txtDisplay.setText("");  //limpar o display
+				sinal = "multiplicar";
+			}
+		});
 		button_multiply.setBounds(243, 93, 44, 30);
 		frame.getContentPane().add(button_multiply);
 		
 		JButton button_menos = new JButton("-");
+		button_menos.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				valor1 = Double.parseDouble(txtDisplay.getText());  //pega o valor 
+				txtDisplay.setText("");  //limpar o display
+				sinal = "menos";
+			}
+		});
 		button_menos.setBounds(243, 170, 44, 30);
 		frame.getContentPane().add(button_menos);
 		
 		JButton button_plus = new JButton("+");
 		button_plus.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			txtDisplay.setText("");
-			valor1 = Double.parseDouble(txtDisplay.getText());
+			public void actionPerformed(ActionEvent e) {			
+			valor1 = Double.parseDouble(txtDisplay.getText());  //pega o valor 
+			txtDisplay.setText("");  //limpar o display
 			sinal = "soma";
 			}
 		});
@@ -188,12 +204,36 @@ public class CalculatorDisplay {
 		JButton button_equal = new JButton("=");
 		button_equal.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				valor2 = Double.parseDouble(txtDisplay.getText()); 
+				if (sinal == "soma") {
+					txtDisplay.setText(String.valueOf(valor1+valor2));   //valueof para converter string 
+				}
+				
+				if (sinal == "menos") {
+					txtDisplay.setText(String.valueOf(valor1-valor2));
+				}
+				
+				if (sinal == "multiplicar") {
+					txtDisplay.setText(String.valueOf(valor1*valor2));
+				}
+				
+				if (sinal == "dividir") {
+					txtDisplay.setText(String.valueOf(valor1/valor2));
+				}
+								
 					}
 		});
 		button_equal.setBounds(189, 170, 44, 80);
 		frame.getContentPane().add(button_equal);
 		
 		JButton btnC = new JButton("C");
+		btnC.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				valor1 = null;
+				valor2 = null;
+				txtDisplay.setText("");
+			}
+		});
 		btnC.setBounds(189, 130, 44, 30);
 		frame.getContentPane().add(btnC);
 		
